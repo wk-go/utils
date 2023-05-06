@@ -11,6 +11,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"strings"
 	"time"
 )
 
@@ -149,4 +150,12 @@ func ZipFilesToWrite(w1 io.Writer, fileList *[]string, pathNames map[string]stri
 		}
 	}
 	return zw.Flush()
+}
+
+// JoinDir 使用系统分隔符连接目录
+func JoinDir(dirs ...string) string {
+	if len(dirs) == 0 {
+		return ""
+	}
+	return strings.Join(dirs, string(os.PathSeparator))
 }
